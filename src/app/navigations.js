@@ -4,20 +4,16 @@ export const navigations = [
   { label: "ITSS", type: "label" },
   { name: "Dashboard", path: "/dashboard/default", icon: "dashboard" },
   {
-    name: "Apartments",
-    icon: "account_balance",
-    path: "/apartments",
+    name: "DataList",
+    icon: "view_list",
+    path: "/data",
   },
   {
-    name: "Tenants",
-    icon: "account_box",
-    path: "/tenants/default",
+    name: "Cart",
+    icon: "shopping_cart",
+    path: "/datacart",
   },
-  {
-    name: "Invoices",
-    icon: "receipt",
-    path: "/invoices/default",
-  },
+
   { label: "PAGES", type: "label" },
   {
     name: "Session/Auth",

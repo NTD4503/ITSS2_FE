@@ -7,6 +7,7 @@ import {
   IconButton,
   Icon,
   Button,
+  Typography,
 } from "@mui/material";
 import { Fragment } from "react";
 import { Breadcrumb } from "app/components";
@@ -21,8 +22,9 @@ const Title = styled("div")(() => ({
 }));
 
 const SubTitle = styled("div")(({ theme }) => ({
-  fontSize: "0.875rem",
-  color: theme.palette.text.secondary,
+  fontSize: "1rem",
+  color: "black",
+  padding: "0.15rem",
 }));
 
 const Container = styled("div")(({ theme }) => ({
@@ -73,14 +75,36 @@ const StyledButton = styled(Button)(({ theme }) => ({
   margin: theme.spacing(1),
 }));
 
-const ImgaeCustom = styled("img")(() => ({
+const ImageWrapper = styled(Box)(() => ({
+  position: "relative",
   width: "100%",
-  height: "100%",
+  height: "0",
+  paddingBottom: "20%", // 16:9 aspect ratio
+  overflow: "hidden",
+  marginBottom: "10px",
+}));
+
+const ImgaeCustom = styled("img")(() => ({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "90%",
   objectFit: "cover",
   objectPosition: "center",
 }));
 
-const Apartments = () => {
+const OverlayText = styled(Typography)(({ theme }) => ({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  color: "#fff",
+  padding: "10px 20px",
+  borderRadius: "4px",
+}));
+
+const DataList = () => {
   const { palette } = useTheme();
   const textColor = palette.text.primary;
 
@@ -88,17 +112,17 @@ const Apartments = () => {
 
   return (
     <Fragment>
-      <Container className="apartments">
+      <Container className="data">
         <Box className="breadcrumb">
           <Breadcrumb
-            routeSegments={[{ name: "apartments", path: "/material" }]}
+            routeSegments={[{ name: "data", path: "/material" }]}
           />
         </Box>
 
         <Grid container spacing={3}>
           <Grid item lg={12} md={12} sm={12} xs={12}>
             <Card sx={{ px: 3, py: 2, mb: 3, textAlign: "center" }}>
-              <Title>Apartment Management</Title>
+              <Title>Gói Data</Title>
             </Card>
           </Grid>
 
@@ -115,23 +139,25 @@ const Apartments = () => {
             </SearchContainer>
           </BoxCustom>
 
-          <BoxCustom>
-            <StyledButton variant="contained" color="primary">
-              Submit
-            </StyledButton>
-          </BoxCustom>
 
           {data.map((item, index) => (
             <Grid item lg={4} md={4} sm={12} xs={12} key={index}>
-              <Link to={`/apartments/${index}/rooms`}>
+              <Link to={`/data/${index}`}>
                 <Card sx={{ px: 3, py: 2, mb: 3 }}>
-                  <Title>Name: Can so ho 1</Title>
+                <ImageWrapper>
+                    <ImgaeCustom
+                      src="/assets/images/2.png"
+                      alt="Anh phong ngu"
+                    />
+                    <OverlayText variant="h4">HUST1N</OverlayText>
+                  </ImageWrapper>
                   <SubTitle>Location: Toa nha dong loi</SubTitle>
                   <SubTitle>Num of rooms: 14A12</SubTitle>
-                  <ImgaeCustom
-                    src="/assets/images/anh-phong-ngu.jpg"
-                    alt="Anh phong ngu"
-                  />
+                  <BoxCustom>
+                    <StyledButton variant="contained" color="primary">
+                      Đăng ký
+                    </StyledButton>
+                  </BoxCustom>
                 </Card>
               </Link>
             </Grid>
@@ -142,5 +168,4 @@ const Apartments = () => {
   );
 };
 
-export default Apartments;
-
+export default DataList;

@@ -7,8 +7,8 @@ import sessionRoutes from "app/views/sessions/SessionRoutes";
 import { Navigate } from "react-router-dom";
 import MatxLayout from "./components/MatxLayout/MatxLayout";
 
-import apartmentsRoutes from "app/views/apartments-management/ApartmentsRoutes";
-import roomRoutes from "./views/room/RoomRoutes";
+import dataRoutes from "app/views/goi-data/DataRoutes";
+import datadetailRoutes from "app/views/data-detail/DataDetailRoutes";
 import tenantsRoutes from "./views/tenants/TenantsRoutes";
 import invoicesRoutes from "app/views/invoices/InvoicesRoutes";
 
@@ -23,9 +23,9 @@ const routes = [
       ...dashboardRoutes,
       ...chartsRoute,
       ...materialRoutes,
-      ...apartmentsRoutes,
+      ...dataRoutes,
       ...tenantsRoutes,
-      ...roomRoutes,
+      ...datadetailRoutes,
       ...invoicesRoutes,
     ],
   },
