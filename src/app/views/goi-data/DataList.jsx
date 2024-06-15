@@ -8,11 +8,14 @@ import {
   Icon,
   Button,
   Typography,
+  TextField,
+  MenuItem,
 } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Breadcrumb } from "app/components";
 import { topBarHeight } from "app/utils/constant";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Title = styled("div")(() => ({
   fontSize: "2rem",
@@ -107,8 +110,41 @@ const OverlayText = styled(Typography)(({ theme }) => ({
 const DataList = () => {
   const { palette } = useTheme();
   const textColor = palette.text.primary;
+  const [data, setData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
 
-  const data = [1, 2, 3, 4, 5];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://itss2-backend.onrender.com/api/data_package');
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSortChange = (event) => {
+    setSortOrder(event.target.value);
+  };
+
+  const filteredData = data.filter(item =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const sortedData = filteredData.sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.price - b.price;
+    } else {
+      return b.price - a.price;
+    }
+  });
 
   return (
     <Fragment>
@@ -122,7 +158,7 @@ const DataList = () => {
         <Grid container spacing={3}>
           <Grid item lg={12} md={12} sm={12} xs={12}>
             <Card sx={{ px: 3, py: 2, mb: 3, textAlign: "center" }}>
-              <Title>Gói Data</Title>
+              <Title>Gói Cước</Title>
             </Card>
           </Grid>
 
@@ -131,7 +167,8 @@ const DataList = () => {
               <SearchInput
                 type="text"
                 placeholder="Search here..."
-                autoFocus
+                value={searchQuery}
+                onChange={handleSearchChange}
               />
               <IconButton sx={{ mx: 2, verticalAlign: "middle" }}>
                 <Icon sx={{ color: textColor }}>close</Icon>
@@ -139,20 +176,35 @@ const DataList = () => {
             </SearchContainer>
           </BoxCustom>
 
+          <BoxCustom>
+            <TextField
+              select
+              label="Sort by price"
+              value={sortOrder}
+              onChange={handleSortChange}
+              variant="outlined"
+              size="small"
+              sx={{ width: '200px', margin: '10px' }}
+            >
+              <MenuItem value="asc">Ascending</MenuItem>
+              <MenuItem value="desc">Descending</MenuItem>
+            </TextField>
+          </BoxCustom>
 
-          {data.map((item, index) => (
+          {sortedData.map((item, index) => (
             <Grid item lg={4} md={4} sm={12} xs={12} key={index}>
-              <Link to={`/data/${index}`}>
+              <Link to={`/data/${item._id}`}>
                 <Card sx={{ px: 3, py: 2, mb: 3 }}>
-                <ImageWrapper>
+                  <ImageWrapper>
                     <ImgaeCustom
                       src="/assets/images/2.png"
-                      alt="Anh phong ngu"
+                      alt={item.name}
                     />
-                    <OverlayText variant="h4">HUST1N</OverlayText>
+                    <OverlayText variant="h5">{item.name}</OverlayText>
                   </ImageWrapper>
-                  <SubTitle>Location: Toa nha dong loi</SubTitle>
-                  <SubTitle>Num of rooms: 14A12</SubTitle>
+                  <SubTitle>Price: {item.price}</SubTitle>
+                  <SubTitle>Data limit: {item.data_limit}</SubTitle>
+                  <SubTitle>Duration: {item.duration} days</SubTitle>
                   <BoxCustom>
                     <StyledButton variant="contained" color="primary">
                       Đăng ký
