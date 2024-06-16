@@ -130,10 +130,10 @@ const Layout1Topbar = () => {
               <UserMenu>
                 <Hidden xsDown>
                   <Span>
-                    Hi <strong>{user.name}</strong>
+                  ITSS2 - 水１ -  <strong>合格</strong>
                   </Span>
                 </Hidden>
-                <Avatar src={user.avatar} sx={{ cursor: 'pointer' }} />
+               
               </UserMenu>
             }
           >
@@ -156,10 +156,7 @@ const Layout1Topbar = () => {
               <Span> Settings </Span>
             </StyledItem> */}
 
-            <StyledItem onClick={logout}>
-              <Icon> power_settings_new </Icon>
-              <Span> Logout </Span>
-            </StyledItem>
+        
           </MatxMenu>
         </Box>
       </TopbarContainer>
