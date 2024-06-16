@@ -115,6 +115,7 @@ const DataList = () => {
   const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
+    document.title = 'Data List';
     const fetchData = async () => {
       try {
         const response = await axios.get('https://itss2-backend.onrender.com/api/data_package');

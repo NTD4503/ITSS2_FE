@@ -73,6 +73,7 @@ const DataCart = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
+    document.title = 'Lịch sử đăng ký gói cước';
     if (initialPhoneNumber) {
       fetchData(initialPhoneNumber);
     }

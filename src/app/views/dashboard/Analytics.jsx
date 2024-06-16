@@ -115,6 +115,7 @@ const Analytics = () => {
   const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
+    document.title = 'Danh sách gói cước';
     const fetchData = async () => {
       try {
         const response = await axios.get('https://itss2-backend.onrender.com/api/data_package');
