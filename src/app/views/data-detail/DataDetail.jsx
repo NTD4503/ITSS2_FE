@@ -143,7 +143,7 @@ const DataDetail = () => {
       <Container className="datadetail">
         <Box className="breadcrumb">
           <Breadcrumb
-            routeSegments={[{ name: "datadetail", path: "/material" }]}
+            routeSegments={[{ name: "Danh sách gói cước", path: "/data" }]}
           />
         </Box>
 
@@ -157,11 +157,11 @@ const DataDetail = () => {
           <Grid item lg={12} md={12} sm={12} xs={12}>
             <GrayBackgroundCard>
               <Card sx={{ px: 3, py: 3, mb: 0 }}>
-                <Title>Price: {data.price}</Title>
-                <SubTitle>Cashback: {data.cashback}</SubTitle>
-                <SubTitle>Data Limit: {data.data_limit}</SubTitle>
-                <SubTitle>Duration: {data.duration} days</SubTitle>
-                <SubTitle>Description: {data.description}</SubTitle>
+              <SubTitle>Giá cước: {data.price} đ/ {data.duration}ngày </SubTitle>
+                <SubTitle>Hoàn tiền: {data.cashback} đ</SubTitle>
+                <SubTitle>Lưu lượng: {data.data_limit}</SubTitle>
+                <SubTitle>Thời gian: {data.duration} ngày</SubTitle>
+                <SubTitle>Ưu đãi: {data.description}</SubTitle>
               </Card>
             </GrayBackgroundCard>
           </Grid>
@@ -204,7 +204,7 @@ const DataDetail = () => {
             Hủy
           </Button>
           <Button onClick={handlePhoneNumberSubmit} color="primary">
-            Kiểm tra
+            Đăng ký
           </Button>
         </DialogActions>
       </Dialog>

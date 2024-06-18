@@ -12,6 +12,7 @@ import {
 import { Breadcrumb } from "app/components";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Title = styled("div")(() => ({
   fontSize: "2rem",
@@ -144,7 +145,7 @@ const DataCart = () => {
       <Container className="datacart">
         <Box className="breadcrumb">
           <Breadcrumb
-            routeSegments={[{ name: "datacart", path: "/material" }]}
+            routeSegments={[{ name: "Lịch sử đăng ký gói cước", path: "/datacart" }]}
           />
         </Box>
 
@@ -183,8 +184,9 @@ const DataCart = () => {
 
           {data.map((item) => (
             <Grid item lg={4} md={4} sm={12} xs={12} key={item._id}>
+               <Link to={`/data/${item.packageID}`}>
               <Card sx={{ px: 3, py: 2, mb: 3 }}>
-
+             
               {item.packageData.map((packageItem, index) => (
                   <Fragment key={index}>
                 <ImageWrapper>
@@ -194,15 +196,16 @@ const DataCart = () => {
                   />
                   <OverlayText variant="h5">{packageItem.name}</OverlayText>
                 </ImageWrapper>
-                    <SubTitle>Price: {packageItem.price}</SubTitle>
-                    <SubTitle>Cashback: {packageItem.cashback}</SubTitle>
-                    <SubTitle>Data Limit: {packageItem.data_limit}</SubTitle>
-                    <SubTitle>Duration: {packageItem.duration} days</SubTitle>
+                <SubTitle>Giá cước: {packageItem.price} đ/ {packageItem.duration}ngày </SubTitle>
+                    <SubTitle>Hoàn tiền: {packageItem.cashback} đ</SubTitle>
+                    <SubTitle>Lưu lượng: {packageItem.data_limit}</SubTitle>
+                    <SubTitle>Thời gian: {packageItem.duration} ngày</SubTitle>
                   
-                    <SubTitle>Expiration Date: {new Date(new Date(item.create_at).getTime() + parseInt(packageItem.duration) * 24 * 60 * 60 * 1000).toLocaleDateString()}</SubTitle>
+                    <SubTitle>Ngày hết hạn: {new Date(new Date(item.create_at).getTime() + parseInt(packageItem.duration) * 24 * 60 * 60 * 1000).toLocaleDateString()}</SubTitle>
                   </Fragment>
                 ))}
               </Card>
+              </Link>
             </Grid>
           ))}
         </Grid>

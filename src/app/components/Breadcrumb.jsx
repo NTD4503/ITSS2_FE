@@ -41,7 +41,7 @@ const Breadcrumb = ({ routeSegments }) => {
     <BreadcrumbRoot>
       {routeSegments ? (
         <Hidden xsDown>
-          <BreadcrumbName>{routeSegments[routeSegments.length - 1]['name']}</BreadcrumbName>
+          
           <Separator>|</Separator>
         </Hidden>
       ) : null}
@@ -55,15 +55,11 @@ const Breadcrumb = ({ routeSegments }) => {
         </NavLink>
 
         {routeSegments
-          ? routeSegments.map((route, index) => {
-              return index !== routeSegments.length - 1 ? (
-                <NavLink key={index} to={route.path}>
-                  <SubName>{route.name}</SubName>
-                </NavLink>
-              ) : (
-                <SubName key={index}>{route.name}</SubName>
-              );
-            })
+          ? routeSegments.map((route, index) => (
+              <NavLink key={index} to={route.path}>
+                <SubName>{route.name}</SubName>
+              </NavLink>
+            ))
           : null}
       </Breadcrumbs>
     </BreadcrumbRoot>

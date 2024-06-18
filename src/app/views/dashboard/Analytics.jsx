@@ -152,14 +152,14 @@ const Analytics = () => {
       <Container className="data">
         <Box className="breadcrumb">
           <Breadcrumb
-            routeSegments={[{ name: "data", path: "/material" }]}
+            routeSegments={[{ name: "danh sách gói cước", path: "/data" }]}
           />
         </Box>
 
         <Grid container spacing={3}>
           <Grid item lg={12} md={12} sm={12} xs={12}>
             <Card sx={{ px: 3, py: 2, mb: 3, textAlign: "center" }}>
-              <Title>Gói Cước</Title>
+              <Title>Danh Sách Gói Cước</Title>
             </Card>
           </Grid>
 
@@ -167,13 +167,11 @@ const Analytics = () => {
             <SearchContainer>
               <SearchInput
                 type="text"
-                placeholder="Search here..."
+                placeholder="Tìm kiếm..."
                 value={searchQuery}
                 onChange={handleSearchChange}
               />
-              <IconButton sx={{ mx: 2, verticalAlign: "middle" }}>
-                <Icon sx={{ color: textColor }}>close</Icon>
-              </IconButton>
+  
             </SearchContainer>
           </BoxCustom>
 
@@ -187,8 +185,8 @@ const Analytics = () => {
               size="small"
               sx={{ width: '200px', margin: '10px' }}
             >
-              <MenuItem value="asc">Ascending</MenuItem>
-              <MenuItem value="desc">Descending</MenuItem>
+              <MenuItem value="asc">Giá tăng dần</MenuItem>
+              <MenuItem value="desc">Giá giảm dần</MenuItem>
             </TextField>
           </BoxCustom>
 
@@ -203,9 +201,9 @@ const Analytics = () => {
                     />
                     <OverlayText variant="h5">{item.name}</OverlayText>
                   </ImageWrapper>
-                  <SubTitle>Price: {item.price}</SubTitle>
-                  <SubTitle>Data limit: {item.data_limit}</SubTitle>
-                  <SubTitle>Duration: {item.duration} days</SubTitle>
+                  <SubTitle>Giá cước: {item.price} đ/ {item.duration}ngày </SubTitle>
+                  <SubTitle>Lưu lượng: {item.data_limit}</SubTitle>
+                  <SubTitle>Thời gian: {item.duration} ngày </SubTitle>
                   <BoxCustom>
                     <StyledButton variant="contained" color="primary">
                       Đăng ký
